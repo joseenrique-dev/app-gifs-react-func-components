@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Link, useHistory } from 'react-router-dom';
+import ListOfGifs from '../components/ListOfGifs';
+import { useGifs } from '../hooks/useGifs';
 
 const POPULAR_GIFS = ["Matrix", "Chile", "Colombia","Ecuador"]
 export default function Home() {
     const [ keyword, setKeyword ] = useState('');
     const history = useHistory()
+    const { loading, gifs } = useGifs();
     const handleSubmit = e =>{
         e.preventDefault();
         history.push(`/search/${keyword}`);
@@ -19,6 +22,8 @@ export default function Home() {
                 <input type="submit" value="Buscar" />
             </form>
 
+            <h3 className="App-title">Última búsqueda</h3>
+            <ListOfGifs gifs={gifs} />
             <h3 className="App-title">Los Gif más Populares</h3>
             <ul>
                 

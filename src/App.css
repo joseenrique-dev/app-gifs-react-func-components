@@ -84,3 +84,12 @@
 .btn:hover {
   background-color: var(--brand-color_6);
 }
+
+:root{
+  --results-columns:2;
+}
+
+.ListOfGifs{
+  column-count: var(--results-columns);
+  column-gap: .5em;
+}

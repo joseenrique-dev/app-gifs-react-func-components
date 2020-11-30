@@ -1,8 +1,8 @@
 const API_KEY = 'QWggCM1TOk6DJiwY3SNgZt4ToU2kpe1j'
 
-export default function getGifs( keywords={} ){
-    console.log('KWYWORDSSSS-->', keywords)
-    const API_URL = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keywords}&limit=25&offset=0&rating=g&lang=en`;
+export default function getGifs( {keyword}={} ){
+    
+    const API_URL = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=25&offset=0&rating=g&lang=en`;
 
     return fetch( API_URL )
       .then(res => res.json())
