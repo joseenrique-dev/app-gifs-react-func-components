@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Link, useHistory } from 'react-router-dom';
 import ListOfGifs from '../components/ListOfGifs';
+import TrendingSearches from '../components/TrendingSearches';
 import { useGifs } from '../hooks/useGifs';
 
 const POPULAR_GIFS = ["Matrix", "Chile", "Colombia","Ecuador"]
@@ -18,25 +19,18 @@ export default function Home() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Search a gif here ..." onChange={handleChange} />
-                <input type="submit" value="Buscar" />
-            </form>
-
-            <h3 className="App-title">Última búsqueda</h3>
-            <ListOfGifs gifs={gifs} />
-            <h3 className="App-title">Los Gif más Populares</h3>
-            <ul>
-                
-                {
-                    POPULAR_GIFS.map((popularGif) =>(
-                        <li key={popularGif}>
-                            <Link to={`/search/${popularGif}`}>Gifs de {popularGif}</Link>
-                        </li>
-                    ))
-                }
-                    
-                
-            </ul>
+                <button>Buscar</button>
+                <input type="text" placeholder="Search a gif here ..." onChange={handleChange} value={keyword} />
+            </form>            
+            <div className="App-main">
+                <div className="App-results">
+                    <h3 className="App-title">Última búsqueda</h3>
+                    <ListOfGifs gifs={gifs} />
+                </div>
+                <div className="App-category">
+                    <TrendingSearches />
+                </div>
+            </div>
         </div>
     )
 }

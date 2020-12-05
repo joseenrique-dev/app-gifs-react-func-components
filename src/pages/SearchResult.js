@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ListOfGifs from '../components/ListOfGifs';
 import { useGifs } from '../hooks/useGifs';
-
-import getGifs from '../services/getGifs'
 
 export default function SearchResult({match}) {
     
@@ -14,7 +12,11 @@ export default function SearchResult({match}) {
             {
                 loading 
                 ? 'Cargando...' 
-                : <ListOfGifs gifs={gifs} />
+                : 
+                <>
+                    <h3 className="App-title">{ decodeURI(keyword) }</h3>
+                    <ListOfGifs gifs={gifs} />
+                </>
             }            
         </div>
     )
