@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
+import Gif from '../components/Gif/Gif';
 import GifsContext from '../context/GifsContext';
-import Gif from '../components/Gif';
+
 
 export default function Detail({ match }) {
     const { id } = match.params;

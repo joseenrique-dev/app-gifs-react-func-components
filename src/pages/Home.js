@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Link, useHistory } from 'react-router-dom';
-import ListOfGifs from '../components/ListOfGifs';
-import TrendingSearches from '../components/TrendingSearches';
+import {  useHistory } from 'react-router-dom';
+import ListOfGifs from '../components/ListOfGifs/ListOfGifs';
+import LazyTrading from '../components/TrendingSearches';
+
+//import TrendingSearches from '../components/TrendingSearches/TrendingSearches';
 import { useGifs } from '../hooks/useGifs';
 
 const POPULAR_GIFS = ["Matrix", "Chile", "Colombia","Ecuador"]
@@ -28,7 +30,7 @@ export default function Home() {
                     <ListOfGifs gifs={gifs} />
                 </div>
                 <div className="App-category">
-                    <TrendingSearches />
+                    <LazyTrading />
                 </div>
             </div>
         </div>

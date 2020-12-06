@@ -1,6 +1,5 @@
 import { Switch, BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.css';
-import ListOfGifs from './components/ListOfGifs';
 import { GifsContextProvider } from './context/GifsContext';
 import Detail from './pages/Detail';
 import Home from './pages/Home';
