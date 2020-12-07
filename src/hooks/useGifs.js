@@ -31,11 +31,12 @@ export function useGifs({ keyword } = {keyword: null}) {
     if(page === INITIAL_PAGE ) return
 
     setLoadingNextPage(false);
-    getGifs({keyword: keywordToUse, page}).then(nextGifs => {
+    getGifs({keyword: keywordToUse, page})
+      .then(nextGifs => {
       setLoadingNextPage(true);
-      setGifs(prevGifs => gifs.concat(prevGifs));
+      setGifs(prevGifs => prevGifs.concat(nextGifs));
     })  
   },[keywordToUse, page, setGifs])
 
-  return {loading,loadingNextPage ,gifs , setPage};
+  return {loading,loadingNextPage ,gifs, page, setPage};
 }

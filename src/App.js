@@ -4,6 +4,7 @@ import { GifsContextProvider } from './context/GifsContext';
 import Detail from './pages/Detail';
 import Home from './pages/Home';
 import SearchResult from './pages/SearchResult';
+import Logo from './logo.png';
 
 function App() {  
 
@@ -11,6 +12,11 @@ function App() {
     <div className="App">
       <section className="App-content">
         <BrowserRouter>
+          <Link to="/">
+            <figure className="App-logo">
+              <img alt='Giffy logo' src={Logo} />
+            </figure>
+          </Link>
           <GifsContextProvider>
             <Switch>
               <Route exact path='/' component={Home} />
