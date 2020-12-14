@@ -4,6 +4,7 @@ import React,{ useEffect, useCallback, useRef } from 'react'
 import ListOfGifs from '../components/ListOfGifs/ListOfGifs';
 import Spinner from '../components/Spinner/Spinner';
 import { useGifs } from '../hooks/useGifs';
+import useTitle from 'hooks/useSEO';
 
 export default function SearchResult({match}) {
     
@@ -11,7 +12,8 @@ export default function SearchResult({match}) {
     const { loading, gifs, setPage } = useGifs({keyword});
     const visorRef  = useRef();
     const { isNearScreen } = useNearScreen({externalRef: !loading && visorRef, once:false});
-    
+    const title = gifs ? `${gifs.length} resultados de ${keyword}` : '';
+    useTitle({title });
     const debounceHanldeNextPage = useCallback(debounce(
         () =>setPage(prevPage => prevPage + 1),2000
     ),[])
