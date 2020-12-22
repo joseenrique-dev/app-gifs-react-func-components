@@ -13,13 +13,12 @@ export default function Home() {
     const history = useHistory()
     const { loading, gifs } = useGifs();
 
-    const handleSubmit = useCallback(({keyword}) =>{
-        history.push(`/search/${keyword}`);
-    })
     
     return (
         <div>
-            <SearchForm onSubmit={handleSubmit} />          
+            <header className="o-header">
+                <SearchForm />          
+            </header>
             <div className="App-main">
                 <div className="App-results">
                     <h3 className="App-title">Última búsqueda</h3>

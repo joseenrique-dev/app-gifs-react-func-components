@@ -20,7 +20,7 @@ function App() {
           <GifsContextProvider>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route exact path='/search/:keyword' component={SearchResult} />
+              <Route exact path='/search/:keyword/:rating?' component={SearchResult} />
               <Route exact path='/gif/:id' component={Detail} />
               <Route path='/404' component={()=> <h1>404 :(</h1>} />
             </Switch>

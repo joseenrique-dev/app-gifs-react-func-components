@@ -5,11 +5,13 @@ import ListOfGifs from '../components/ListOfGifs/ListOfGifs';
 import Spinner from '../components/Spinner/Spinner';
 import { useGifs } from '../hooks/useGifs';
 import useTitle from 'hooks/useSEO';
+import SearchForm from 'components/SearchForm/SearchForm';
 
 export default function SearchResult({match}) {
     
-    const { keyword } = match.params;
-    const { loading, gifs, setPage } = useGifs({keyword});
+    const { keyword,rating = 'g' } = match.params;
+    
+    const { loading, gifs, setPage } = useGifs({keyword, rating});
     const visorRef  = useRef();
     const { isNearScreen } = useNearScreen({externalRef: !loading && visorRef, once:false});
     const title = gifs ? `${gifs.length} resultados de ${keyword}` : '';
@@ -32,9 +34,14 @@ export default function SearchResult({match}) {
                 ? <Spinner /> 
                 : 
                 <>
-                    <h3 className="App-title">
-                        { decodeURI(keyword) }
-                    </h3>
+                    <header className="o-header">
+                        <SearchForm initialKeyword={ keyword } initialRating={ rating }/>          
+                    </header>
+                    <div className="App-wrapper">
+                        <h3 className="App-title">
+                            { decodeURI(keyword) }
+                        </h3>
+                    </div>
                     <ListOfGifs gifs={gifs} />
                     <div id="visor" ref={visorRef }></div>
                 </>

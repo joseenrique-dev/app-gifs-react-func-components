@@ -1,25 +1,42 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import useForm from './hook';
 
-function SearchForm({ onSubmit }) {
-    const [ keyword, setKeyword ] = useState('');
-    const history = useHistory()
+
+
+const RATINGS = ['g', 'pg', 'pg-23', 'r'];
+function SearchForm({initialKeyword = '', initialRating = 'g'}) {
     
-    const handleChange = e =>{
-        setKeyword(e.target.value);
-    } 
-    const handleSubmit = e =>{
-        e.preventDefault();
-        //navegar a otra ruta
-        onSubmit({keyword}) //llamo a la funcion q esta en home y allá se redirecciona
+    const {keyword, rating,times, updateKeyword, updateRating} = useForm({ initialKeyword, initialRating })
+    
+    const history = useHistory()
+
+    const handleChange = e => {
+        updateKeyword( e.target.value )
+        //dispatch( {type:ACTIONS.UPDATE_KEYWORD, payload: e.target.value})
     }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        history.push(`/search/${keyword}/${rating}`);
+    }
+    const handleChangeRating = (e) =>{
+        //dispatch( {type:ACTIONS.UPDATE_RATING, payload: e.target.value})
+        updateRating( e.target.value );
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <button>Buscar</button>
                 <input type="text" placeholder="Search a gif here ..." onChange={handleChange} value={keyword} />
-            </form> 
+                <select onChange={handleChangeRating} value={rating}>
+                    {
+                        RATINGS.map(val => <option key={val}>{val}</option>)
+                    }
+                </select>
+                {times}
+            </form>
         </div>
     )
 }
